@@ -4,6 +4,8 @@
     <string name="mobile_id">手机号</string>
     <string name="prompt_password">密码</string>
     <string name="action_sign_in">登录</string>
-    <!--WarehouseOut-->
+    <!--WarehouseOutActivity-->
     <string name="warehouse_out">出库</string>
+    <string name="order_picking">拣货</string>
+    <string name="picking_classify">拣货分类</string>
 </resources>

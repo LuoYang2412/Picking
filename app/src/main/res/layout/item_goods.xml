@@ -26,8 +26,8 @@
                 android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/textView1"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
 
         <TextView
                 android:layout_width="0dp"
@@ -38,8 +38,21 @@
                 android:layout_marginStart="8dp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView1"
                 tools:text="44ETRTEWRY"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/checkBox1"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"/>
+
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox1"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="false"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:id="@+id/container"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   android:paddingLeft="@dimen/activity_horizontal_margin"
-                                                   android:paddingTop="@dimen/activity_vertical_margin"
-                                                   android:paddingRight="@dimen/activity_horizontal_margin"
-                                                   android:paddingBottom="@dimen/activity_vertical_margin"
-                                                   tools:context=".ui.login.LoginActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".ui.LoginActivity">
 
     <EditText
             android:id="@+id/username"
@@ -58,9 +59,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password"
             app:textColor="@android:color/white"
+            app:enabled="false"
             app:cardBackgroundColor="@color/colorPrimary"
             app:layout_constraintVertical_bias="0.2"
-            app:enabled="false"/>
+            app:cardCornerRadius="16dp"/>
 
     <ProgressBar
             android:id="@+id/loading"

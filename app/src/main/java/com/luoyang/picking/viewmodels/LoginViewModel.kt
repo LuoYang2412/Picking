@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 
 class LoginViewModel : BaseViewModel() {
     val inputSuccess = MutableLiveData<Boolean>()
-    val logined = true
+    val logined = false
 
     fun loginDataChanged(mobileNo: String, password: String) {
         inputSuccess.value = isMobileNo(mobileNo) && isPassword(password)

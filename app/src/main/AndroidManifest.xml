@@ -3,30 +3,39 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.luoyang.picking">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
+            android:name=".PickingApplication"
             android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:name=".PickingApplication"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"
-            >
+            tools:replace="android:allowBackup">
+        <activity
+                android:name=".ui.PickingActivity"
+                android:label="@string/order_picking"
+                >
+        </activity>
+        <activity
+                android:name=".ui.MainActivity"
+                android:label="@string/app_name">
+        </activity>
+        <activity
+                android:name=".ui.WarehouseOutActivity"
+                android:label="@string/warehouse_out"/>
         <activity
                 android:name=".ui.LoginActivity"
-                android:label="@string/app_name"
-                >
+                android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-                android:name=".ui.WarehouseOut"
-                android:label="@string/warehouse_out"
-                />
     </application>
 
 </manifest>

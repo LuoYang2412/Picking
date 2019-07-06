@@ -8,9 +8,11 @@ class WarehouseViewModel : BaseViewModel() {
 
     fun getData() {
         val arrayList = ArrayList<Goods>()
-        for (i in 1..10) {
-            arrayList.add(Goods((Math.random() * 26 + 97).toString()))
-        }
+        arrayList.add(Goods("6959310410617"))
+        arrayList.add(Goods("http://weixin.qq.com/r/RUzXz97EsIPPrZqs9xlX"))
+        arrayList.add(Goods("http://m.tb.cn/ZjgGcw"))
+        arrayList.add(Goods("6959310402094"))
+
         data.value = arrayList
     }
 }
