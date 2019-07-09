@@ -6,15 +6,14 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.view.*
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bin.david.form.data.column.Column
 import com.bin.david.form.data.table.TableData
+import com.bin.david.form.utils.DensityUtils
 import com.luoyang.picking.R
 import com.luoyang.picking.data.model.PickingClassify
 import com.luoyang.picking.data.model.PickingGoods
-import com.luoyang.picking.utils.ViewDp2Px
 import com.luoyang.picking.viewmodels.PickingViewModel
 import kotlinx.android.synthetic.main.activity_picking.*
 
@@ -67,7 +66,7 @@ class PickingActivity : BaseActivity() {
             columnTitleVerticalPadding = 8
             horizontalPadding = 2
             verticalPadding = 1
-            minTableWidth = metrics.widthPixels - ViewDp2Px.dip2px(this@PickingActivity, 16F)
+            minTableWidth = metrics.widthPixels - DensityUtils.dp2px(this@PickingActivity, 16F)
         }
         pickingViewModel.pickingInfo.observe(this, Observer {
             textView4.text = it.time

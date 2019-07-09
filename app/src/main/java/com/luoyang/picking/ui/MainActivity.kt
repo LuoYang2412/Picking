@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.bin.david.form.utils.DensityUtils
 import com.luoyang.picking.R
-import com.luoyang.picking.utils.ViewDp2Px
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,15 +23,15 @@ class MainActivity : AppCompatActivity() {
 
         //拣货
         radiusButton1.textView.apply {
-            compoundDrawablePadding = ViewDp2Px.dip2px(this@MainActivity, 8F)
+            compoundDrawablePadding = DensityUtils.dp2px(this@MainActivity, 8F)
             setCompoundDrawables(
                 null,
                 getDrawable(R.drawable.ic_picking).apply {
                     setBounds(
                         0,
                         0,
-                        ViewDp2Px.dip2px(this@MainActivity, 40F),
-                        ViewDp2Px.dip2px(this@MainActivity, 40F)
+                        DensityUtils.dp2px(this@MainActivity, 40F),
+                        DensityUtils.dp2px(this@MainActivity, 40F)
                     )
                 },
                 null,
@@ -44,15 +44,15 @@ class MainActivity : AppCompatActivity() {
 
         //出库
         radiusButton2.textView.apply {
-            compoundDrawablePadding = ViewDp2Px.dip2px(this@MainActivity, 8F)
+            compoundDrawablePadding = DensityUtils.dp2px(this@MainActivity, 8F)
             setCompoundDrawables(
                 null,
                 getDrawable(R.drawable.ic_warehouse_out).apply {
                     setBounds(
                         0,
                         0,
-                        ViewDp2Px.dip2px(this@MainActivity, 40F),
-                        ViewDp2Px.dip2px(this@MainActivity, 40F)
+                        DensityUtils.dp2px(this@MainActivity, 40F),
+                        DensityUtils.dp2px(this@MainActivity, 40F)
                     )
                 },
                 null,
