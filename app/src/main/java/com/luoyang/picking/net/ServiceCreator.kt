@@ -1,5 +1,7 @@
 package com.luoyang.picking.net
 
+import com.javalong.retrofitmocker.createMocker
+import com.luoyang.picking.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -9,9 +11,7 @@ import timber.log.Timber
 
 object ServiceCreator {
 
-    //        private const val BASE_URL = "https://www.easy-mock.com/mock/5bf25d3c34392218c898a66b/QuickRun/"
-//    private const val BASE_URL = "https://twms.qbftt.com/"//测试服
-    private const val BASE_URL = "http://192.168.3.237:8081/"
+    private const val BASE_URL = "https://www.easy-mock.com/mock/5d229280700a3305ca47c9c6/picking/"
 
     const val IMAGE_BASE_URL = "${BASE_URL}upload/"
 
@@ -28,6 +28,7 @@ object ServiceCreator {
 
     private val retrofit = builder.build()
 
-    fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
+    fun <T> create(serviceClass: Class<T>): T =
+        retrofit.createMocker(serviceClass, BuildConfig.DEBUG)
 
 }

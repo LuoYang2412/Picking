@@ -3,11 +3,14 @@ package com.luoyang.picking
 import android.app.Activity
 import android.app.Application
 import android.os.Process
+import androidx.lifecycle.MutableLiveData
+import com.luoyang.picking.data.model.UserInfo
 import timber.log.Timber
 
 
 class PickingApplication : Application() {
     private val activitys = ArrayList<Activity>()
+    var userInfo: UserInfo? = null
 
     companion object {
         lateinit var application: PickingApplication

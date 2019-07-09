@@ -1,32 +1,28 @@
 package com.luoyang.picking.net.api
 
 import com.google.gson.JsonObject
+import com.javalong.retrofitmocker.annotation.MOCK
+import com.luoyang.picking.data.model.PickingClassify
+import com.luoyang.picking.data.model.PickingInfo
 import com.luoyang.picking.net.Resource
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-interface DeliveryService {
-    /**
-     * 获取货运单号
-     * @param state 0未完成，1已完成
-     */
+interface PickingService {
+    //获取拣货分类
+    @MOCK("pickingClassify.json")
     @FormUrlEncoded
-    @POST("app_freightOrder_getAll")
-    fun app_freightOrder_getAll(@Field("state") state: String, @Field("userId") userId: String): Call<Resource<JsonObject>>
+    @POST("getPickingClassify")
+    fun getPickingClassify(): Call<Resource<ArrayList<PickingClassify>>>
 
-    /**
-     * 查询所有订单
-     * @param freightOrderId 货运单号
-     * @param pickUpId 提货点ID ""表示所有提货点
-     */
+    //获取拣货单
+    @MOCK("pickingInfo.json")
     @FormUrlEncoded
-    @POST("app_order_getAll")
-    fun app_order_getAll(
-        @Field("freightOrderId") freightOrderId: String, @Field("pickUpId") pickUpId: String,
-        @Field("userId") userId: String
-    ): Call<Resource<JsonObject>>
+    @POST("getPinckingInfo")
+    fun getPinckingInfo(
+    ): Call<Resource<PickingInfo>>
 
     /**
      * 获取路线

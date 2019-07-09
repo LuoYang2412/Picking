@@ -1,7 +1,7 @@
 package com.luoyang.picking.net
 
 import com.luoyang.picking.net.api.AuthService
-import com.luoyang.picking.net.api.DeliveryService
+import com.luoyang.picking.net.api.PickingService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -9,41 +9,27 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class QuickRunNetwork {
+class PickingNetwork {
 
     private val authService = ServiceCreator.create(AuthService::class.java)
 
-    private val deliveryService = ServiceCreator.create(DeliveryService::class.java)
+    private val pickingService = ServiceCreator.create(PickingService::class.java)
 
-    /**
-     * 登录
-     */
     suspend fun login(mobileNo: String, password: String) = authService.login(mobileNo, password).await()
 
-    /**
-     * 获取货运单号
-     * @param state 0未完成，1已完成
-     */
-    suspend fun app_freightOrder_getAll(state: String, userId: String) =
-        deliveryService.app_freightOrder_getAll(state, userId).await()
+    suspend fun getPickingClassify() = pickingService.getPickingClassify().await()
 
-    /**
-     * 查询所有订单
-     * @param freightOrderId 货运单号
-     * @param pickUpId 提货点ID ""表示所有提货点
-     */
-    suspend fun app_order_getAll(freightOrderId: String, pickUpId: String, userId: String) =
-        deliveryService.app_order_getAll(freightOrderId, pickUpId, userId).await()
+    suspend fun getPinckingInfo()=pickingService.getPinckingInfo().await()
 
     suspend fun app_route_getRoute(freightOrderId: String, userId: String) =
-        deliveryService.app_route_getRoute(freightOrderId, userId).await()
+        pickingService.app_route_getRoute(freightOrderId, userId).await()
 
     /**
      * 修改订单状态
      * @param pickUpId ""表示装货完成状态，有值表示提货点下货完成
      */
     suspend fun app_order_inDistribution(freightOrderId: String, pickUpId: String, userId: String) =
-        deliveryService.app_order_inDistribution(freightOrderId, pickUpId, userId).await()
+        pickingService.app_order_inDistribution(freightOrderId, pickUpId, userId).await()
 
     suspend fun app_changeMobilePhone(oldPhone: String, newPhone: String, userId: String, code: String) =
         authService.app_changeMobilePhone(oldPhone, newPhone, userId, code).await()
@@ -71,13 +57,13 @@ class QuickRunNetwork {
 
     companion object {
 
-        private var network: QuickRunNetwork? = null
+        private var network: PickingNetwork? = null
 
-        fun getInstance(): QuickRunNetwork {
+        fun getInstance(): PickingNetwork {
             if (network == null) {
-                synchronized(QuickRunNetwork::class.java) {
+                synchronized(PickingNetwork::class.java) {
                     if (network == null) {
-                        network = QuickRunNetwork()
+                        network = PickingNetwork()
                     }
                 }
             }

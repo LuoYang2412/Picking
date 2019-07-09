@@ -1,0 +1,43 @@
+{
+  "code": "200",
+  "success": true,
+  "message": "",
+  "data": {
+    "time": "2019年7月8日16:41:24",
+    "storage": "勤邦小河仓",
+    "orderId": "订单号_etrwert7941323q",
+    "logisticsId": "物流单号_7965411313ew3",
+    "pickingGoods": [
+      {
+        "shelfArea": "货架_325r",
+        "goods": "商品_132",
+        "specification": "Kg",
+        "count": 3
+      },
+      {
+        "shelfArea": "货架_465",
+        "goods": "商品_1,u",
+        "specification": "Kg",
+        "count": 2
+      },
+      {
+        "shelfArea": "货架_6ILF",
+        "goods": "商品_E365",
+        "specification": "个",
+        "count": 10
+      },
+      {
+        "shelfArea": "货架_335r",
+        "goods": "商品_1u6",
+        "specification": "Kg",
+        "count": 9
+      },
+      {
+        "shelfArea": "货架_322665r",
+        "goods": "商品_132gu;p",
+        "specification": "ml",
+        "count": 500
+      }
+    ]
+  }
+}

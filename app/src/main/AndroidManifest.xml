@@ -4,6 +4,7 @@
           package="com.luoyang.picking">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:name=".PickingApplication"
@@ -13,8 +14,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            tools:ignore="GoogleAppIndexingWarning"
-            tools:replace="android:allowBackup">
+            tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
+            tools:replace="android:allowBackup"
+            android:usesCleartextTraffic="true"
+            >
         <activity
                 android:name=".ui.PickingActivity"
                 android:label="@string/order_picking"
