@@ -34,13 +34,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
                 app:layout_constraintStart_toEndOf="@+id/textView1"
-                android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView1"
                 tools:text="44ETRTEWRY"
                 app:layout_constraintEnd_toStartOf="@+id/checkBox1"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"/>
+                app:layout_constraintTop_toTopOf="@+id/textView1"
+                app:layout_constraintBottom_toBottomOf="@+id/textView1"/>
 
         <CheckBox
                 android:layout_width="wrap_content"
