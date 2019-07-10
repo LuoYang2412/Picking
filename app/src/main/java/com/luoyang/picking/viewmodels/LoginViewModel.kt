@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.luoyang.picking.PickingApplication
 import com.luoyang.picking.net.PickingNetwork
+import com.luoyang.picking.utils.AESUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -27,7 +28,7 @@ class LoginViewModel : BaseViewModel() {
         viewModelScope.launch {
             try {
                 resultMsg.value = withContext(Dispatchers.IO) {
-                    val resource = PickingNetwork.getInstance().login(username, password)
+                    val resource = PickingNetwork.getInstance().login(username, AESUtils.encrypt(password))
                     if (resource.success) {
                         PickingApplication.application.userInfo = resource.data
                         return@withContext resource.success.toString()

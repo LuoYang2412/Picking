@@ -20,8 +20,7 @@ interface AuthService {
     @POST("login")
     fun login(
         @Field("account") account: String,
-        @Field("password") password: String,
-        @Field("uuid") uuid: String = "0"
+        @Field("password") password: String
     ): Call<Resource<UserInfo>>
 
     /**
