@@ -19,25 +19,12 @@ class PickingNetwork {
 
     suspend fun getPickingClassify() = pickingService.getPickingClassify().await()
 
-    suspend fun getPinckingInfo()=pickingService.getPinckingInfo().await()
+    suspend fun getPinckingInfo(flag: String, routeId: String) = pickingService.getPinckingInfo(flag, routeId).await()
 
-    suspend fun app_route_getRoute(freightOrderId: String, userId: String) =
-        pickingService.app_route_getRoute(freightOrderId, userId).await()
+    suspend fun pda_finishPicking(pickingId: String) = pickingService.pda_finishPicking(pickingId).await()
 
-    /**
-     * 修改订单状态
-     * @param pickUpId ""表示装货完成状态，有值表示提货点下货完成
-     */
-    suspend fun app_order_inDistribution(freightOrderId: String, pickUpId: String, userId: String) =
-        pickingService.app_order_inDistribution(freightOrderId, pickUpId, userId).await()
-
-    suspend fun app_changeMobilePhone(oldPhone: String, newPhone: String, userId: String, code: String) =
-        authService.app_changeMobilePhone(oldPhone, newPhone, userId, code).await()
-
-    suspend fun app_changePassword(newPassword: String, oldPassword: String, userId: String) =
-        authService.app_changePassword(newPassword, oldPassword, userId).await()
-
-    suspend fun send_message(mobile: String, type: Int) = authService.send_message(mobile, type).await()
+    suspend fun warehouseOut(carsId: String, handover: String, list: String, routeId: String) =
+        pickingService.order_output(carsId, handover, list, routeId).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

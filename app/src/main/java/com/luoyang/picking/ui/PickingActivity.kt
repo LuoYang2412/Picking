@@ -45,7 +45,7 @@ class PickingActivity : BaseActivity() {
         })
 
         //表格
-        pickingViewModel.getPinckingInfo()
+        pickingViewModel.getPinckingInfo("", "")
         val metrics = resources.displayMetrics
         val width = metrics.widthPixels / 5
         val column = Column<String>("货架区", "shelfArea")
@@ -85,7 +85,7 @@ class PickingActivity : BaseActivity() {
 
         //确定打印
         radiusButton4.setOnClickListener {
-            //TODO 打印
+            pickingViewModel.printPincking("")
         }
     }
 

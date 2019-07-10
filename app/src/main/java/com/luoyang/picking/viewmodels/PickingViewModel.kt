@@ -31,13 +31,31 @@ class PickingViewModel : BaseViewModel() {
         }
     }
 
-    fun getPinckingInfo() {
+    fun getPinckingInfo(flag: String, routeId: String) {
         viewModelScope.launch {
             try {
                 resultMsg.value = withContext(Dispatchers.IO) {
-                    val resource = PickingNetwork.getInstance().getPinckingInfo()
+                    val resource = PickingNetwork.getInstance().getPinckingInfo(flag, routeId)
                     if (resource.success) {
                         pickingInfo.postValue(resource.data)
+                        return@withContext resource.success.toString()
+                    } else {
+                        return@withContext resource.message
+                    }
+                }
+            } catch (t: Throwable) {
+                resultMsg.value = t.message
+            }
+        }
+    }
+
+    fun printPincking(pickingId: String) {
+        viewModelScope.launch {
+            try {
+                resultMsg.value = withContext(Dispatchers.IO) {
+                    val resource = PickingNetwork.getInstance().pda_finishPicking(pickingId)
+                    if (resource.success) {
+//                        pickingInfo.postValue(resource.data)
                         return@withContext resource.success.toString()
                     } else {
                         return@withContext resource.message
