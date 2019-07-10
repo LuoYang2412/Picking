@@ -6,18 +6,20 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.device.ScanManager
 import android.device.scanner.configuration.PropertyID
-import android.graphics.Color
+import android.graphics.Canvas
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
-import android.os.Handler
 import android.os.Vibrator
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.chad.library.adapter.base.BaseQuickAdapter
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback
+import com.chad.library.adapter.base.listener.OnItemSwipeListener
 import com.luoyang.picking.R
+import com.luoyang.picking.data.model.Goods
 import com.luoyang.picking.ui.adapters.GoodsAdapter
 import com.luoyang.picking.viewmodels.WarehouseViewModel
 import kotlinx.android.synthetic.main.activity_warehouse_out.*
@@ -33,14 +35,15 @@ class WarehouseOutActivity : BaseActivity() {
         }
     }
 
-    val goodsAdapter = GoodsAdapter()
+    private val warehouseViewModel by lazy { ViewModelProviders.of(this).get(WarehouseViewModel::class.java) }
+    private val goodsAdapter = GoodsAdapter()
 
     val mScanManager = ScanManager()
     private var soundid: Int = 0
     private var soundpool: SoundPool? = null
     private var mVibrator: Vibrator? = null
 
-
+    //扫码广播接收器
     private val scanBroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             soundpool?.play(soundid, 1f, 1f, 0, 0, 1f)
@@ -50,20 +53,8 @@ class WarehouseOutActivity : BaseActivity() {
             val barcodelen = intent?.getIntExtra(ScanManager.BARCODE_LENGTH_TAG, 0)
             val stringExtra = String(barcode!!, 0, barcodelen!!)
             Timber.tag("============").d(stringExtra)
-            var checks: Boolean? = null
-            for (i in 0 until goodsAdapter.data.size) {
-                val it = goodsAdapter.data[i]
-                if (it.goods_id == stringExtra) {
-                    it.check = true
-                    (recyclerView1.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(i, 0)
-                    goodsAdapter.notifyItemChanged(i)
-                }
-                if (checks == null) {
-                    checks = it.check
-                }
-                checks = checks as Boolean && it.check
-            }
-            radiusButton3.isVisible = checks!!
+
+            warehouseViewModel.addGoods(Goods(stringExtra, true))
         }
 
     }
@@ -74,27 +65,51 @@ class WarehouseOutActivity : BaseActivity() {
 
         mVibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-        val warehouseViewModel = ViewModelProviders.of(this).get(WarehouseViewModel::class.java)
-
-        swipeRefreshLayout1.setColorSchemeColors(Color.RED, Color.BLUE, Color.GREEN)
-        swipeRefreshLayout1.setOnRefreshListener {
-            warehouseViewModel.getData()
-            radiusButton3.isVisible = false
-            Handler().postDelayed({ swipeRefreshLayout1.isRefreshing = false }, 500)
-        }
-
+        //列表
         goodsAdapter.isFirstOnly(false)
-        goodsAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT)
+        goodsAdapter.setEmptyView(R.layout.item_warehouse_out_empty, recyclerView1)
+        val itemDragAndSwipeCallback = ItemDragAndSwipeCallback(goodsAdapter)
+        val itemTouchHelper = ItemTouchHelper(itemDragAndSwipeCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView1)
+        goodsAdapter.enableSwipeItem()
+        goodsAdapter.setOnItemSwipeListener(object : OnItemSwipeListener {
+            override fun clearView(p0: RecyclerView.ViewHolder?, p1: Int) {
+            }
+
+            override fun onItemSwiped(p0: RecyclerView.ViewHolder?, p1: Int) {
+                if (p1 == -1) {
+                    warehouseViewModel.removeGoods(p0!!.layoutPosition)
+                }
+            }
+
+            override fun onItemSwipeStart(p0: RecyclerView.ViewHolder?, p1: Int) {
+            }
+
+            override fun onItemSwipeMoving(
+                p0: Canvas?,
+                p1: RecyclerView.ViewHolder?,
+                p2: Float,
+                p3: Float,
+                p4: Boolean
+            ) {
+
+            }
+
+        })
         recyclerView1.adapter = goodsAdapter
-
-        radiusButton3.setOnClickListener {
-            showToast("出库")
-        }
-
-        warehouseViewModel.getData()
-        warehouseViewModel.data.observe(this, Observer {
+        warehouseViewModel.goods.observe(this, Observer {
             goodsAdapter.replaceData(it)
         })
+
+        //下一步
+        warehouseViewModel.nextButtonVisible.observe(this, Observer {
+            radiusButton3.isVisible = it
+        })
+        radiusButton3.setOnClickListener {
+            Timber.tag("===============").d(goodsAdapter.data.size.toString())
+            Timber.tag("==============").d(warehouseViewModel.goods.value?.size.toString())
+            showToast("出库")
+        }
     }
 
     override fun onResume() {
