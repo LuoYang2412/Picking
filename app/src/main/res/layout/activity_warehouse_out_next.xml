@@ -14,11 +14,12 @@
             android:id="@+id/spinner"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/bg_picking_toolbar_spinner"
-            android:paddingRight="50dp"
+            android:background="@drawable/bg_warehouse_out_next_spinner"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintBottom_toTopOf="@+id/spinner1"
-            app:layout_constraintVertical_chainStyle="packed"/>
+            app:layout_constraintVertical_chainStyle="packed"
+            android:paddingLeft="16dp"
+            android:paddingRight="50dp"/>
 
     <Spinner
             android:layout_width="match_parent"
@@ -28,11 +29,12 @@
             app:layout_constraintTop_toBottomOf="@+id/spinner"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/bg_picking_toolbar_spinner"
-            android:paddingRight="50dp"
+            android:background="@drawable/bg_warehouse_out_next_spinner"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintBottom_toTopOf="@+id/spinner2"
-            app:layout_constraintVertical_chainStyle="packed"/>
+            app:layout_constraintVertical_chainStyle="packed"
+            android:paddingLeft="16dp"
+            android:paddingRight="50dp"/>
 
     <Spinner
             android:layout_width="match_parent"
@@ -42,11 +44,12 @@
             app:layout_constraintTop_toBottomOf="@+id/spinner1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/bg_picking_toolbar_spinner"
-            android:paddingRight="50dp"
+            android:background="@drawable/bg_warehouse_out_next_spinner"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintBottom_toTopOf="@+id/radiusButton5"
-            app:layout_constraintVertical_chainStyle="packed"/>
+            app:layout_constraintVertical_chainStyle="packed"
+            android:paddingLeft="16dp"
+            android:paddingRight="50dp"/>
 
     <TextView
             android:text="司机"
@@ -71,7 +74,7 @@
             android:layout_marginEnd="16dp"/>
 
     <TextView
-            android:text="车辆"
+            android:text="路线"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView15"

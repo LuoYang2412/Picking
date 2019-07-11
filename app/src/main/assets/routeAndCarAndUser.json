@@ -1,0 +1,52 @@
+{
+  "code": "201",
+  "message": "请求成功",
+  "success": true,
+  "data": {
+    "carsDOList": [
+      {
+        "id": "a0df81a37cec4c508e9861e8ef45c380",
+        "numPlate": "ADF21",
+        "warehouseId": 32,
+        "image": "2019/07/09/a0df81a37cec4c508e9861e8ef45c380.png",
+        "createUserId": "7e8c820a4ff448a88a376af0590a1036",
+        "createDate": "2019-07-09 10:52:42.0",
+        "state": 3
+      }
+    ],
+    "userDOList": [
+      {
+        "id": "ffe08bdd848d4b9092971142aa4633e2",
+        "account": "HSY1506545",
+        "password": "f35477c9e17a12651306ee1f75a39803",
+        "mobilePhone": "15752115450",
+        "realName": "调试",
+        "sex": 1,
+        "telePhone": "0851-2589658",
+        "createDate": 1562825468000,
+        "createUserId": "56bbf17d80e14614ba7a0b0503d01203",
+        "state": 0,
+        "address": "第三方",
+        "remarks": "",
+        "areaProvince": 410000,
+        "areaCity": 410100,
+        "areaCounty": 410103,
+        "backstage": 0
+      }
+    ],
+    "routeDOList": [
+      {
+        "id": "7841103f9fca46c3bd854f6fb0a925b1",
+        "name": "调试",
+        "createUserId": "56bbf17d80e14614ba7a0b0503d01203",
+        "createDate": "2019-07-09 10:35:04.0",
+        "updateUserId": "56bbf17d80e14614ba7a0b0503d01203",
+        "updateDate": "2019-07-11 15:13:26.0",
+        "warehouseId": 32,
+        "routeJson": "{\"nodes\":[{\"sort\":\"1\",\"id\":\"32\",\"name\":\"总仓\"},{\"sort\":\"2\",\"id\":\"33\",\"name\":\"贵阳市111\"},{\"sort\":\"3\",\"id\":\"34\",\"name\":\"南明提货点\"},{\"sort\":\"4\",\"id\":\"35\",\"name\":\"花溪提货点\"},{\"sort\":\"5\",\"id\":\"43\",\"name\":\"触发器1号\"}]}",
+        "state": 0,
+        "remarks": ""
+      }
+    ]
+  }
+}

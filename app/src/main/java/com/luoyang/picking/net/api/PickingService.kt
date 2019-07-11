@@ -1,8 +1,8 @@
 package com.luoyang.picking.net.api
 
 import com.javalong.retrofitmocker.annotation.MOCK
-import com.luoyang.picking.data.model.PickingClassify
 import com.luoyang.picking.data.model.PickingInfo
+import com.luoyang.picking.data.model.RouteAndCarAndUser
 import com.luoyang.picking.net.Resource
 import retrofit2.Call
 import retrofit2.http.Field
@@ -21,21 +21,26 @@ interface PickingService {
     ): Call<Resource<PickingInfo>>
 
     //拣货完成打印标签
-    @MOCK("")
+    @MOCK("resource.json")
     @FormUrlEncoded
     @POST("pda_finishPicking")
     fun pda_finishPicking(
         @Field("pickingId") pickingId: String
     ): Call<Resource<Objects>>
 
+    //获取路线车辆司机
+    @MOCK("routeAndCarAndUser.json")
+    @POST("getRouteAndCarAndUser")
+    fun getRouteAndCarAndUser(): Call<Resource<RouteAndCarAndUser>>
+
     //出库
-    @MOCK("")
+    @MOCK("resource.json")
     @FormUrlEncoded
     @POST("order_output")
     fun order_output(
         @Field("carsId") carsId: String,
         @Field("handover") handover: String,//驾驶员ID
-        @Field("list") list: String,//物流单ID
+        @Field("lists") list: String,//物流单ID
         @Field("routeId") routeId: String
-    ): Call<Resource<*>>
+    ): Call<Resource<Objects>>
 }

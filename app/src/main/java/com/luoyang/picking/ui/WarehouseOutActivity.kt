@@ -1,5 +1,6 @@
 package com.luoyang.picking.ui
 
+import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -19,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback
 import com.chad.library.adapter.base.listener.OnItemSwipeListener
 import com.luoyang.picking.R
-import com.luoyang.picking.data.model.Goods
 import com.luoyang.picking.ui.adapters.GoodsAdapter
 import com.luoyang.picking.viewmodels.WarehouseViewModel
 import kotlinx.android.synthetic.main.activity_warehouse_out.*
@@ -54,7 +54,7 @@ class WarehouseOutActivity : BaseActivity() {
             val stringExtra = String(barcode!!, 0, barcodelen!!)
             Timber.tag("============").d(stringExtra)
 
-            warehouseViewModel.addGoods(Goods(stringExtra, true))
+            warehouseViewModel.addGoods(stringExtra)
         }
 
     }
@@ -97,7 +97,7 @@ class WarehouseOutActivity : BaseActivity() {
 
         })
         recyclerView1.adapter = goodsAdapter
-        warehouseViewModel.goods.observe(this, Observer {
+        warehouseViewModel.pickingIdsList.observe(this, Observer {
             goodsAdapter.replaceData(it)
         })
 
@@ -106,10 +106,17 @@ class WarehouseOutActivity : BaseActivity() {
             radiusButton3.isVisible = it
         })
         radiusButton3.setOnClickListener {
-            Timber.tag("===============").d(goodsAdapter.data.size.toString())
-            Timber.tag("==============").d(warehouseViewModel.goods.value?.size.toString())
-            showToast("出库")
+            WarehouseOutNextActivity.goIn(this, warehouseViewModel.pickingIdsList.value!!)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            val value = warehouseViewModel.pickingIdsList.value
+            value?.clear()
+            warehouseViewModel.setPickingIdsList(value!!)
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onResume() {

@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:gravity="right"
-            android:width="50dp">
+            android:gravity="right">
         <shape>
             <solid android:color="@color/_E5E5E5"/>
             <corners
-                    android:topRightRadius="20dp"
-                    android:bottomRightRadius="20dp"/>
+                    android:radius="20dp"/>
+        </shape>
+    </item>
+    <item android:right="50dp">
+        <shape>
+            <corners
+                    android:topLeftRadius="20dp"
+                    android:bottomLeftRadius="20dp"/>
+            <solid android:color="@android:color/white"/>
         </shape>
     </item>
     <item>

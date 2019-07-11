@@ -1,43 +1,59 @@
 {
-  "code": "200",
+  "code": "201",
+  "message": "请求成功",
   "success": true,
-  "message": "",
   "data": {
-    "time": "2019年7月8日16:41:24",
-    "storage": "勤邦小河仓",
-    "orderId": "订单号_etrwert7941323q",
-    "logisticsId": "物流单号_7965411313ew3",
-    "pickingGoods": [
+    "orderNo": "ggyp_201907103898495110",
+    "goodsList": [
       {
-        "shelfArea": "货架_325r",
-        "goods": "商品_132",
-        "specification": "Kg",
-        "count": 3
+        "orderId": "6ea49d3f84ee41da8dd37085f19a065e",
+        "skuWarehouseId": 82,
+        "quantity": 8,
+        "outputQuantity": 8,
+        "inputQuantity": 0,
+        "goodsName": "商品3",
+        "price": "0.00",
+        "isSku": 0,
+        "isChild": 0,
+        "logisticsReq": "1",
+        "partName": "分区1"
       },
       {
-        "shelfArea": "货架_465",
-        "goods": "商品_1,u",
-        "specification": "Kg",
-        "count": 2
+        "orderId": "6ea49d3f84ee41da8dd37085f19a065e",
+        "skuWarehouseId": 83,
+        "quantity": 5,
+        "outputQuantity": 5,
+        "inputQuantity": 0,
+        "goodsName": "商品2",
+        "price": "0.00",
+        "isSku": 0,
+        "isChild": 0,
+        "logisticsReq": "1",
+        "partName": "分区1"
       },
       {
-        "shelfArea": "货架_6ILF",
-        "goods": "商品_E365",
-        "specification": "个",
-        "count": 10
-      },
-      {
-        "shelfArea": "货架_335r",
-        "goods": "商品_1u6",
-        "specification": "Kg",
-        "count": 9
-      },
-      {
-        "shelfArea": "货架_322665r",
-        "goods": "商品_132gu;p",
-        "specification": "ml",
-        "count": 500
+        "orderId": "6ea49d3f84ee41da8dd37085f19a065e",
+        "skuWarehouseId": 84,
+        "quantity": 4,
+        "outputQuantity": 4,
+        "inputQuantity": 0,
+        "goodsName": "商品1",
+        "price": "0.00",
+        "isSku": 0,
+        "isChild": 0,
+        "logisticsReq": "1",
+        "partName": "分区1"
       }
-    ]
+    ],
+    "pickingDO": {
+      "id": "082f77d7e6c14d5887042873b31da26b",
+      "num": "nullggyp_201907103898495110",
+      "createDate": "2019-07-10 08:40:33.0",
+      "state": 0,
+      "warehouseId": 0,
+      "pickUpId": 0
+    },
+    "shipNum": "KW00001562718582445VVP",
+    "warehouseName": "总仓"
   }
 }

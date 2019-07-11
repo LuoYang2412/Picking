@@ -17,7 +17,10 @@
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
             tools:replace="android:allowBackup">
-        <activity android:name=".ui.WarehouseOutNextActivity">
+        <activity
+                android:name=".ui.WarehouseOutNextActivity"
+                android:label="@string/warehouse_out"
+                >
         </activity>
         <activity
                 android:name=".ui.PickingActivity"

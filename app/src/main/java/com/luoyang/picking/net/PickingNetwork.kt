@@ -17,9 +17,11 @@ class PickingNetwork {
 
     suspend fun login(mobileNo: String, password: String) = authService.login(mobileNo, password).await()
 
-    suspend fun getPinckingInfo(orderId : String) = pickingService.getPinckingInfo(orderId ).await()
+    suspend fun getPinckingInfo(orderId: String) = pickingService.getPinckingInfo(orderId).await()
 
     suspend fun pda_finishPicking(pickingId: String) = pickingService.pda_finishPicking(pickingId).await()
+
+    suspend fun getRouteAndCarAndUser() = pickingService.getRouteAndCarAndUser().await()
 
     suspend fun warehouseOut(carsId: String, handover: String, list: String, routeId: String) =
         pickingService.order_output(carsId, handover, list, routeId).await()

@@ -1,30 +1,34 @@
 package com.luoyang.picking.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import com.luoyang.picking.data.model.Goods
 
 class WarehouseViewModel : BaseViewModel() {
-    val goods = MutableLiveData<ArrayList<Goods>>()
+    val pickingIdsList = MutableLiveData<ArrayList<String>>()
     val nextButtonVisible = MutableLiveData<Boolean>()
-    private val goodsList = ArrayList<Goods>()
+    private val pickingIds = ArrayList<String>()
 
-    fun addGoods(goods: Goods) {
-        goodsList.map {
-            if (it.goods_id == goods.goods_id) {
+    fun setPickingIdsList(value: ArrayList<String>) {
+        pickingIdsList.value = value
+        checkNextButtonVisible()
+    }
+
+    fun addGoods(pickingId: String) {
+        pickingIds.map {
+            if (it == pickingId) {
                 return
             }
         }
-        goodsList.add(goods)
-        this.goods.value = goodsList
+        pickingIds.add(pickingId)
+        this.pickingIdsList.value = pickingIds
         checkNextButtonVisible()
     }
 
     fun removeGoods(index: Int) {
-        goodsList.removeAt(index)
+        pickingIds.removeAt(index)
         checkNextButtonVisible()
     }
 
     private fun checkNextButtonVisible() {
-        nextButtonVisible.value = goodsList.size != 0
+        nextButtonVisible.value = pickingIds.size != 0
     }
 }
