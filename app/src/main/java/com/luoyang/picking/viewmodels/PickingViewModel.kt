@@ -21,7 +21,7 @@ class PickingViewModel : BaseViewModel() {
                             pickingInfo.postValue(resource.data)
                             return@withContext resource.success.toString()
                         } else {
-                            return@withContext "无需重复扫描"
+                            return@withContext "查找数据失败，无需重复扫描"
                         }
                     } else {
                         return@withContext resource.message
