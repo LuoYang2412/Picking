@@ -32,9 +32,11 @@ object ServiceCreator {
                     return@Interceptor it.proceed(newRequest)
                 } else if (oldRequest.method().equals("POST")) {
                     val bodyBuilder = FormBody.Builder()
-                    val oldBody = oldRequest.body() as FormBody
-                    for (i in 0 until oldBody.size()) {
-                        bodyBuilder.addEncoded(oldBody.encodedName(i), oldBody.encodedValue(i))
+                    val oldBody = oldRequest.body()
+                    if (oldBody is FormBody) {
+                        for (i in 0 until oldBody.size()) {
+                            bodyBuilder.addEncoded(oldBody.encodedName(i), oldBody.encodedValue(i))
+                        }
                     }
                     val formBody =
                         bodyBuilder.addEncoded("token", PickingApplication.application.userInfo!!.token).build()
