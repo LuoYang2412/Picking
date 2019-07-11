@@ -9,4 +9,5 @@
     <string name="order_picking">拣货</string>
     <string name="picking_classify">拣货分类</string>
     <string name="next">下一步</string>
+    <string name="done">完成</string>
 </resources>

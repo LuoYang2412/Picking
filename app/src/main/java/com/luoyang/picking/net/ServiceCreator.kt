@@ -2,6 +2,9 @@ package com.luoyang.picking.net
 
 import com.javalong.retrofitmocker.createMocker
 import com.luoyang.picking.BuildConfig
+import com.luoyang.picking.PickingApplication
+import okhttp3.FormBody
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,9 +18,36 @@ object ServiceCreator {
 
     const val IMAGE_BASE_URL = "${BASE_URL}upload/"
 
-    private val httpClient = OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor {
-        Timber.d(it)
-    }.setLevel(HttpLoggingInterceptor.Level.BODY))
+    private val httpClient = OkHttpClient.Builder()
+        .addInterceptor(Interceptor {
+            val oldRequest = it.request()
+            if (PickingApplication.application.userInfo != null) {
+                if (oldRequest.method().equals("GET")) {
+                    val url = oldRequest.url().newBuilder()
+                        .addQueryParameter("token", PickingApplication.application.userInfo!!.token)
+                        .build()
+                    val newRequest = oldRequest.newBuilder()
+                        .method(oldRequest.method(), oldRequest.body())
+                        .url(url).build()
+                    return@Interceptor it.proceed(newRequest)
+                } else if (oldRequest.method().equals("POST")) {
+                    val bodyBuilder = FormBody.Builder()
+                    val oldBody = oldRequest.body() as FormBody
+                    for (i in 0 until oldBody.size()) {
+                        bodyBuilder.addEncoded(oldBody.encodedName(i), oldBody.encodedValue(i))
+                    }
+                    val formBody =
+                        bodyBuilder.addEncoded("token", PickingApplication.application.userInfo!!.token).build()
+                    val newRequest = oldRequest.newBuilder().post(formBody).build()
+                    return@Interceptor it.proceed(newRequest)
+                }
+            }
+
+            it.proceed(oldRequest)
+        })
+        .addInterceptor(HttpLoggingInterceptor {
+            Timber.d(it)
+        }.setLevel(HttpLoggingInterceptor.Level.BODY))
 
     private val builder = Retrofit.Builder()
         .baseUrl(BASE_URL)

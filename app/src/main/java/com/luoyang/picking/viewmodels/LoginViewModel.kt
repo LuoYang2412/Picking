@@ -28,7 +28,8 @@ class LoginViewModel : BaseViewModel() {
         viewModelScope.launch {
             try {
                 resultMsg.value = withContext(Dispatchers.IO) {
-                    val resource = PickingNetwork.getInstance().login(username, AESUtils.encrypt(password))
+                    val password1 = AESUtils.encrypt(password)
+                    val resource = PickingNetwork.getInstance().login(username, password1)
                     if (resource.success) {
                         PickingApplication.application.userInfo = resource.data
                         return@withContext resource.success.toString()
@@ -37,7 +38,7 @@ class LoginViewModel : BaseViewModel() {
                     }
                 }
             } catch (t: Throwable) {
-                resultMsg.value = t.message
+                resultMsg.value = t.message ?: "未知异常"
             }
         }
     }

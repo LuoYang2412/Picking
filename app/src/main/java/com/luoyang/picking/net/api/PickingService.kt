@@ -8,21 +8,16 @@ import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import java.util.*
 
 interface PickingService {
-    //获取拣货分类
-    @MOCK("pickingClassify.json")
-    @FormUrlEncoded
-    @POST("pda_getRouteAndType")
-    fun getPickingClassify(): Call<Resource<ArrayList<PickingClassify>>>
 
     //获取拣货单
     @MOCK("pickingInfo.json")
     @FormUrlEncoded
     @POST("pda_getPicking")
     fun getPinckingInfo(
-        @Field("flag") flag: String,
-        @Field("routeId") routeId: String
+        @Field("orderId") orderId: String
     ): Call<Resource<PickingInfo>>
 
     //拣货完成打印标签
@@ -31,7 +26,7 @@ interface PickingService {
     @POST("pda_finishPicking")
     fun pda_finishPicking(
         @Field("pickingId") pickingId: String
-    ): Call<Resource<*>>
+    ): Call<Resource<Objects>>
 
     //出库
     @MOCK("")

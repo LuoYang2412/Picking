@@ -37,6 +37,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     protected fun showToast(msg: String) {
+        if (msg == "true") return
         Timber.d(msg)
         ToastUtil.show(msg)
     }

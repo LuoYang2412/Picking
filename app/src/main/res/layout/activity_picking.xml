@@ -122,38 +122,34 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/radiusButton"
             android:layout_marginTop="8dp"/>
 
 
     <com.luoyang.picking.ui.widget.RadiusButton
-            android:layout_width="140dp"
+            android:layout_width="0dp"
             android:layout_height="32dp"
-            android:id="@+id/radiusButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toStartOf="@+id/radiusButton4"
+            android:id="@+id/radiusButton4"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="16dp"
-            app:text="跳    过"
-            app:textColor="@color/colorAccent"
-            android:foreground="?attr/selectableItemBackgroundBorderless"/>
-
-    <com.luoyang.picking.ui.widget.RadiusButton
-            android:layout_width="140dp"
-            android:layout_height="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/radiusButton"
-            app:layout_constraintTop_toTopOf="@+id/radiusButton"
-            android:id="@+id/radiusButton4"
-            app:layout_constraintStart_toEndOf="@+id/radiusButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:cardCornerRadius="16dp"
-            app:text="确定打印"
+            app:text="@string/done"
             app:textColor="@android:color/white"
             app:cardBackgroundColor="@color/colorPrimary"
-            android:foreground="?attr/selectableItemBackgroundBorderless"/>
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+            android:layout_marginEnd="16dp"/>
+
+    <include
+            android:id="@+id/include"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            layout="@layout/item_warehouse_out_empty"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

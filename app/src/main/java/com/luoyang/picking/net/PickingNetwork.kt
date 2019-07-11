@@ -17,9 +17,7 @@ class PickingNetwork {
 
     suspend fun login(mobileNo: String, password: String) = authService.login(mobileNo, password).await()
 
-    suspend fun getPickingClassify() = pickingService.getPickingClassify().await()
-
-    suspend fun getPinckingInfo(flag: String, routeId: String) = pickingService.getPinckingInfo(flag, routeId).await()
+    suspend fun getPinckingInfo(orderId : String) = pickingService.getPinckingInfo(orderId ).await()
 
     suspend fun pda_finishPicking(pickingId: String) = pickingService.pda_finishPicking(pickingId).await()
 
