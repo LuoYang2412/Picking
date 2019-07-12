@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bin.david.form.utils.DensityUtils
+import com.luoyang.picking.PickingApplication
 import com.luoyang.picking.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -62,5 +63,10 @@ class MainActivity : AppCompatActivity() {
         radiusButton2.setOnClickListener {
             WarehouseOutActivity.goIn(this)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        PickingApplication.application.exit()
     }
 }

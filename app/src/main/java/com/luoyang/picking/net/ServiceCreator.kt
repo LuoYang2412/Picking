@@ -37,8 +37,12 @@ object ServiceCreator {
                         }
                     }
                     val formBody =
-                        bodyBuilder.addEncoded("token", PickingApplication.application.userInfo!!.token).build()
-                    val newRequest = oldRequest.newBuilder().post(formBody).build()
+                        bodyBuilder
+                            .addEncoded("token", PickingApplication.application.userInfo!!.token)
+                            .build()
+                    val newRequest = oldRequest.newBuilder().post(formBody)
+                        .addHeader("Authorization", PickingApplication.application.userInfo!!.token)
+                        .build()
                     return@Interceptor it.proceed(newRequest)
                 }
             }

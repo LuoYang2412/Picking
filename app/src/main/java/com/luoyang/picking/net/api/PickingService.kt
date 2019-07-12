@@ -30,7 +30,7 @@ interface PickingService {
 
     //获取路线车辆司机
     @MOCK("routeAndCarAndUser.json")
-    @POST("getRouteAndCarAndUser")
+    @POST("get_routeAndCarAndUser")
     fun getRouteAndCarAndUser(): Call<Resource<RouteAndCarAndUser>>
 
     //出库
