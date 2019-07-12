@@ -19,7 +19,8 @@
             app:layout_constraintBottom_toTopOf="@+id/spinner1"
             app:layout_constraintVertical_chainStyle="packed"
             android:paddingLeft="16dp"
-            android:paddingRight="50dp"/>
+            android:paddingRight="50dp"
+            app:layout_constraintVertical_bias="0.25"/>
 
     <Spinner
             android:layout_width="match_parent"
@@ -46,10 +47,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/bg_warehouse_out_next_spinner"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintBottom_toTopOf="@+id/radiusButton5"
             app:layout_constraintVertical_chainStyle="packed"
             android:paddingLeft="16dp"
-            android:paddingRight="50dp"/>
+            android:paddingRight="50dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/radiusButton5"/>
 
     <TextView
             android:text="司机"
@@ -87,8 +89,6 @@
     <com.luoyang.picking.ui.widget.RadiusButton
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/spinner2"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -99,6 +99,7 @@
             app:textColor="@android:color/white"
             android:id="@+id/radiusButton5"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/spinner2"
+            android:layout_marginTop="100dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
