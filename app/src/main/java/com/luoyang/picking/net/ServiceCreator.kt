@@ -16,8 +16,6 @@ object ServiceCreator {
 
     private const val BASE_URL = "https://www.easy-mock.com/mock/5d229280700a3305ca47c9c6/picking/"
 
-    const val IMAGE_BASE_URL = "${BASE_URL}upload/"
-
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor(Interceptor {
             val oldRequest = it.request()

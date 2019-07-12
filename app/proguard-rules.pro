@@ -65,3 +65,4 @@
  -keep class com.luoyang.picking.data.**{*;}
  -keep class com.luoyang.picking.net.**{*;}
  -keep class com.luoyang.picking.utils.**{*;}
+ -keep class android.device.**{*;}
