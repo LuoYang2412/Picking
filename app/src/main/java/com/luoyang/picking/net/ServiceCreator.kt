@@ -3,7 +3,6 @@ package com.luoyang.picking.net
 import com.javalong.retrofitmocker.createMocker
 import com.luoyang.picking.BuildConfig
 import com.luoyang.picking.PickingApplication
-import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,35 +18,10 @@ object ServiceCreator {
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor(Interceptor {
             val oldRequest = it.request()
-            if (PickingApplication.application.userInfo != null) {
-                if (oldRequest.method().equals("GET")) {
-                    val url = oldRequest.url().newBuilder()
-                        .addQueryParameter("token", PickingApplication.application.userInfo!!.token)
-                        .build()
-                    val newRequest = oldRequest.newBuilder()
-                        .method(oldRequest.method(), oldRequest.body())
-                        .url(url).build()
-                    return@Interceptor it.proceed(newRequest)
-                } else if (oldRequest.method().equals("POST")) {
-                    val bodyBuilder = FormBody.Builder()
-                    val oldBody = oldRequest.body()
-                    if (oldBody is FormBody) {
-                        for (i in 0 until oldBody.size()) {
-                            bodyBuilder.addEncoded(oldBody.encodedName(i), oldBody.encodedValue(i))
-                        }
-                    }
-                    val formBody =
-                        bodyBuilder
-                            .addEncoded("token", PickingApplication.application.userInfo!!.token)
-                            .build()
-                    val newRequest = oldRequest.newBuilder().post(formBody)
-                        .addHeader("Authorization", PickingApplication.application.userInfo!!.token)
-                        .build()
-                    return@Interceptor it.proceed(newRequest)
-                }
-            }
-
-            it.proceed(oldRequest)
+            val newRequest = oldRequest.newBuilder()
+                .addHeader("Authorization", PickingApplication.application.userInfo?.token ?: "")
+                .build()
+            it.proceed(newRequest)
         })
         .addInterceptor(HttpLoggingInterceptor {
             Timber.d(it)

@@ -53,7 +53,7 @@ class PickingApplication : Application() {
             it.finish()
         }
         activitys.clear()
-        userInfo == null
+        preference.edit().clear().apply()
         Process.killProcess(Process.myPid())
     }
 

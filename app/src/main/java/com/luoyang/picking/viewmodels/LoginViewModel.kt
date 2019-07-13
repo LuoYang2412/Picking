@@ -13,11 +13,11 @@ class LoginViewModel : BaseViewModel() {
     val inputSuccess = MutableLiveData<Boolean>()
 
     fun loginDataChanged(mobileNo: String, password: String) {
-        inputSuccess.value = isMobileNo(mobileNo) && isPassword(password)
+        inputSuccess.value = isAccount(mobileNo) && isPassword(password)
     }
 
-    private fun isMobileNo(mobileNo: String): Boolean {
-        return mobileNo.length == 11
+    private fun isAccount(account: String): Boolean {
+        return account.length>0
     }
 
     private fun isPassword(password: String): Boolean {
