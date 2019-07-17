@@ -37,6 +37,32 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    flavorDimensions "host"
+    productFlavors {
+        app {
+            dimension "host"
+            buildConfigField("String", "HOST", "\"https://mobile.api.com/\"")
+            resValue("string", "appName", "Pincking")
+        }
+        local {
+            dimension "host"
+            applicationIdSuffix ".local"
+            buildConfigField("String", "HOST", "\"https://mobile.api.com/local/\"")
+            resValue("string", "appName", "Pincking-本地")
+        }
+        ttest {
+            dimension "host"
+            applicationIdSuffix ".ttest"
+            buildConfigField("String", "HOST", "\"https://mobile.api.com/ttest/\"")
+            resValue("string", "appName", "Pincking-测试")
+        }
+        demo {
+            dimension "host"
+            applicationIdSuffix ".demo"
+            buildConfigField("String", "HOST", "\"https://mobile.api.com/demo/\"")
+            resValue("string", "appName", "Pincking-演示")
+        }
+    }
 }
 
 dependencies {

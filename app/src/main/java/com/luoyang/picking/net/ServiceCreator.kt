@@ -13,7 +13,7 @@ import timber.log.Timber
 
 object ServiceCreator {
 
-    private const val BASE_URL = "https://mobile.api.com/"
+    private const val BASE_URL = BuildConfig.HOST
 
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor(Interceptor {
@@ -38,5 +38,4 @@ object ServiceCreator {
 
     fun <T> create(serviceClass: Class<T>): T =
         retrofit.createMocker(serviceClass, BuildConfig.DEBUG)
-
 }

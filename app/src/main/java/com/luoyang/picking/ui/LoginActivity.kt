@@ -16,9 +16,8 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setTitle(R.string.action_sign_in)
 
-//        MainActivity.goIn(this)
-//        finish()
 
         val loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
