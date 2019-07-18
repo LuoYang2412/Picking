@@ -34,8 +34,8 @@ class WarehouseOutNextViewModel : BaseViewModel() {
     }
 
     fun warehouseOut(list: ArrayList<String>) {
-        if (carId == null || driverId == null || routeId == null) {
-            resultMsg.value = "司机路线车辆信息错误"
+        if (driverId == null || routeId == null) {
+            resultMsg.value = "请至少选择司机和路线"
             return
         }
         viewModelScope.launch {
