@@ -57,14 +57,14 @@ class OrderDetailActivity : BaseActivity() {
         setContentView(R.layout.activity_order_detail)
 
         val goodsNameColumn = Column<String>("商品名称", "goodsName")
+        val outputQuantityColumn = Column<Int>("数量", "outputQuantity")
         val goodsSpecValueColumn = Column<String>("规格", "goodsSpecValue")
-        val outputQuantityColumn = Column<Int>("商品数量", "outputQuantity")
         val tableData = TableData<OrderGoodsDOS>(
             "订单详情",
             ArrayList<OrderGoodsDOS>(),
-            goodsSpecValueColumn,
             goodsNameColumn,
-            outputQuantityColumn
+            outputQuantityColumn,
+            goodsSpecValueColumn
         )
         smartTable1.tableData = tableData
         smartTable1.config.apply {
