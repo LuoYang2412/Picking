@@ -17,10 +17,11 @@
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
             tools:replace="android:allowBackup">
+        <activity android:name=".ui.OrderDetailActivity">
+        </activity>
         <activity
                 android:name=".ui.WarehouseOutNextActivity"
-                android:label="@string/warehouse_out"
-                >
+                android:label="@string/warehouse_out">
         </activity>
         <activity
                 android:name=".ui.PickingActivity"
@@ -33,9 +34,7 @@
         <activity
                 android:name=".ui.WarehouseOutActivity"
                 android:label="@string/warehouse_out"/>
-        <activity
-                android:name=".ui.LoginActivity"
-                >
+        <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

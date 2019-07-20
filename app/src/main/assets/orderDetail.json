@@ -1,0 +1,28 @@
+{
+  "code": "200",
+  "message": "查询成功",
+  "success": true,
+  "data": {
+    "orderNo": "GGYP_20190719354525010",
+    "logisticsReq": "2",
+    "shipState": 6,
+    "shipNum": "KW00001563524668357SST",
+    "pickUpPoint": "王麻子",
+    "state": 1,
+    "orderGoodsDOS": [
+      {
+        "orderId": "1563524668357X03",
+        "skuWarehouseId": 0,
+        "quantity": 1,
+        "outputQuantity": 1,
+        "inputQuantity": 0,
+        "goodsName": "商品A7号",
+        "price": "0.01",
+        "isSku": 0,
+        "isChild": 0,
+        "logisticsReq": "2"
+      }
+    ],
+    "remarks": ""
+  }
+}

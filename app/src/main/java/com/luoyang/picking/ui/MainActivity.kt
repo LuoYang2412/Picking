@@ -22,6 +22,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
+        //查询
+        radiusButton3.textView.apply {
+            compoundDrawablePadding = DensityUtils.dp2px(this@MainActivity, 8F)
+            setCompoundDrawables(
+                null,
+                getDrawable(R.drawable.ic_search).apply {
+                    setBounds(
+                        0,
+                        0,
+                        DensityUtils.dp2px(this@MainActivity, 40F),
+                        DensityUtils.dp2px(this@MainActivity, 40F)
+                    )
+                },
+                null, null
+            )
+        }
+        radiusButton3.setOnClickListener {
+            OrderDetailActivity.goIn(this)
+        }
+
         //拣货
         radiusButton1.textView.apply {
             compoundDrawablePadding = DensityUtils.dp2px(this@MainActivity, 8F)

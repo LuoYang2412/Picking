@@ -26,6 +26,8 @@ class PickingNetwork {
     suspend fun warehouseOut(carsId: String, handover: String, list: String, routeId: String) =
         pickingService.order_output(carsId, handover, list, routeId).await()
 
+    suspend fun order_detail(orderId: String) = pickingService.order_detail(orderId).await()
+
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {

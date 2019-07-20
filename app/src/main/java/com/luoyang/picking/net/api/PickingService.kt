@@ -1,6 +1,7 @@
 package com.luoyang.picking.net.api
 
 import com.javalong.retrofitmocker.annotation.MOCK
+import com.luoyang.picking.data.model.OrderDetail
 import com.luoyang.picking.data.model.PickingInfo
 import com.luoyang.picking.data.model.RouteAndCarAndUser
 import com.luoyang.picking.net.Resource
@@ -43,4 +44,12 @@ interface PickingService {
         @Field("lists") list: String,//物流单ID
         @Field("routeId") routeId: String
     ): Call<Resource<Objects>>
+
+    //查询订单详情
+    @MOCK("orderDetail.json")
+    @FormUrlEncoded
+    @POST("pda_getOrderDetail")
+    fun order_detail(
+        @Field("orderId") orderId: String
+    ): Call<Resource<OrderDetail>>
 }
