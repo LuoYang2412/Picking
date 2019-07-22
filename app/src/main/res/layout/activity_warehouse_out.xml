@@ -32,7 +32,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:visibility="gone"
             app:cardBackgroundColor="@color/colorPrimary"
-            app:text="@string/next"
+            app:text="@string/warehouse_out"
             app:textColor="@android:color/white"
             app:cardCornerRadius="20dp"
             />

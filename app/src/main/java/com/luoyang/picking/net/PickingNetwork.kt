@@ -28,6 +28,9 @@ class PickingNetwork {
 
     suspend fun order_detail(orderId: String) = pickingService.order_detail(orderId).await()
 
+    suspend fun order_output_verification(orderId: String, routeId: String) =
+        pickingService.order_output_verification(orderId, routeId).await()
+
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {

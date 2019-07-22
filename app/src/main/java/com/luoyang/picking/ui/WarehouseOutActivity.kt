@@ -1,6 +1,5 @@
 package com.luoyang.picking.ui
 
-import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -21,7 +20,7 @@ import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback
 import com.chad.library.adapter.base.listener.OnItemSwipeListener
 import com.luoyang.picking.R
 import com.luoyang.picking.ui.adapters.GoodsAdapter
-import com.luoyang.picking.viewmodels.WarehouseViewModel
+import com.luoyang.picking.viewmodels.WarehouseOutViewModel
 import kotlinx.android.synthetic.main.activity_warehouse_out.*
 import timber.log.Timber
 
@@ -29,13 +28,16 @@ import timber.log.Timber
 class WarehouseOutActivity : BaseActivity() {
 
     companion object {
-        fun goIn(context: Context) {
+        fun goIn(context: Context, carId: String?, driverId: String, routeId: String) {
             val intent = Intent(context, WarehouseOutActivity::class.java)
+            intent.putExtra("carId", carId)
+                .putExtra("driverId", driverId)
+                .putExtra("routeId", routeId)
             context.startActivity(intent)
         }
     }
 
-    private val warehouseViewModel by lazy { ViewModelProviders.of(this).get(WarehouseViewModel::class.java) }
+    private val warehouseOutViewModel by lazy { ViewModelProviders.of(this).get(WarehouseOutViewModel::class.java) }
     private val goodsAdapter = GoodsAdapter()
 
     val mScanManager = ScanManager()
@@ -54,7 +56,7 @@ class WarehouseOutActivity : BaseActivity() {
             val stringExtra = String(barcode!!, 0, barcodelen!!)
             Timber.tag("============").d(stringExtra)
 
-            warehouseViewModel.addGoods(stringExtra)
+            warehouseOutViewModel.order_output_verification(stringExtra)
         }
 
     }
@@ -62,6 +64,10 @@ class WarehouseOutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_warehouse_out)
+
+        warehouseOutViewModel.carId = intent.getStringExtra("carId")
+        warehouseOutViewModel.driverId = intent.getStringExtra("driverId")
+        warehouseOutViewModel.routeId = intent.getStringExtra("routeId")
 
         mVibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
@@ -78,7 +84,7 @@ class WarehouseOutActivity : BaseActivity() {
 
             override fun onItemSwiped(p0: RecyclerView.ViewHolder?, p1: Int) {
                 if (p1 == -1) {
-                    warehouseViewModel.removeGoods(p0!!.layoutPosition)
+                    warehouseOutViewModel.removeGoods(p0!!.layoutPosition)
                 }
             }
 
@@ -97,26 +103,30 @@ class WarehouseOutActivity : BaseActivity() {
 
         })
         recyclerView1.adapter = goodsAdapter
-        warehouseViewModel.pickingIdsList.observe(this, Observer {
+        warehouseOutViewModel.pickingIdsList.observe(this, Observer {
             goodsAdapter.replaceData(it)
         })
 
-        //下一步
-        warehouseViewModel.nextButtonVisible.observe(this, Observer {
+        //出库
+        warehouseOutViewModel.nextButtonVisible.observe(this, Observer {
             radiusButton3.isVisible = it
         })
         radiusButton3.setOnClickListener {
-            WarehouseOutNextActivity.goIn(this, warehouseViewModel.pickingIdsList.value!!)
+            warehouseOutViewModel.warehouseOut()
         }
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK) {
-            val value = warehouseViewModel.pickingIdsList.value
-            value?.clear()
-            warehouseViewModel.setPickingIdsList(value!!)
-        }
-        super.onActivityResult(requestCode, resultCode, data)
+        warehouseOutViewModel.resultMsg.observe(this, Observer {
+            when {
+                it.contains("订单验证成功") -> {
+                    warehouseOutViewModel.addGoods(it.split("::")[1])
+                }
+                it == "出库成功" -> {
+                    showToast(it)
+                    warehouseOutViewModel.clearList()
+                }
+                else -> showToast(it)
+            }
+        })
     }
 
     override fun onResume() {

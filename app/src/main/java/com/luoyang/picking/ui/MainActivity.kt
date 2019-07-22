@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
         radiusButton2.setOnClickListener {
-            WarehouseOutActivity.goIn(this)
+            SelectRouteActivity.goIn(this)
         }
     }
 

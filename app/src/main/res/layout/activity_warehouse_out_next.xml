@@ -95,7 +95,7 @@
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="20dp"
             app:cardBackgroundColor="@color/colorPrimary"
-            app:text="@string/done"
+            app:text="@string/next"
             app:textColor="@android:color/white"
             android:id="@+id/radiusButton5"
             app:layout_constraintBottom_toBottomOf="parent"

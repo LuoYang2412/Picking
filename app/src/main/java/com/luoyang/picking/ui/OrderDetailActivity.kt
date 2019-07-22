@@ -103,6 +103,7 @@ class OrderDetailActivity : BaseActivity() {
                 "3" -> "保鲜"
                 else -> "-"
             }
+            textView30.text = it.route
             textView27.text = it.remarks ?: "-"
             smartTable1.tableData.t = it.orderGoodsDOS
             smartTable1.notifyDataChanged()

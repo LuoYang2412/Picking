@@ -8,7 +8,8 @@ data class OrderDetail(
     val remarks: String,
     val shipNum: String,
     val shipState: Int,
-    val state: Int
+    val state: Int,
+    val route: String
 )
 
 data class OrderGoodsDOS(

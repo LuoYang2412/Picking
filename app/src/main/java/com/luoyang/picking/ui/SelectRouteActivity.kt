@@ -1,6 +1,5 @@
 package com.luoyang.picking.ui
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,16 +11,16 @@ import com.luoyang.picking.R
 import com.luoyang.picking.ui.adapters.WareHouseOutCarsSpinnerAdapter
 import com.luoyang.picking.ui.adapters.WareHouseOutDriverSpinnerAdapter
 import com.luoyang.picking.ui.adapters.WareHouseOutRougeSpinnerAdapter
-import com.luoyang.picking.viewmodels.WarehouseOutNextViewModel
+import com.luoyang.picking.viewmodels.SelectRouteViewModel
 import kotlinx.android.synthetic.main.activity_warehouse_out_next.*
 
-class WarehouseOutNextActivity : BaseActivity() {
+//选择路线
+class SelectRouteActivity : BaseActivity() {
 
     companion object {
-        fun goIn(activity: Activity, pickingIds: ArrayList<String>) {
-            val intent = Intent(activity, WarehouseOutNextActivity::class.java)
-            intent.putExtra("pickingIds", pickingIds)
-            activity.startActivityForResult(intent, 0)
+        fun goIn(context: Context) {
+            val intent = Intent(context, SelectRouteActivity::class.java)
+            context.startActivity(intent)
         }
     }
 
@@ -29,9 +28,7 @@ class WarehouseOutNextActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_warehouse_out_next)
 
-        val pickingId = intent.getSerializableExtra("pickingIds") as ArrayList<*> as ArrayList<String>
-
-        val warehouseOutNextViewModel = ViewModelProviders.of(this).get(WarehouseOutNextViewModel::class.java)
+        val selectRouteViewModel = ViewModelProviders.of(this).get(SelectRouteViewModel::class.java)
 
         //司机车辆路线
         val driverSpinnerAdapter = WareHouseOutDriverSpinnerAdapter()
@@ -42,7 +39,7 @@ class WarehouseOutNextActivity : BaseActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                warehouseOutNextViewModel.driverId = driverSpinnerAdapter.data[position].id
+                selectRouteViewModel.driverId = driverSpinnerAdapter.data[position].id
             }
 
         }
@@ -54,7 +51,7 @@ class WarehouseOutNextActivity : BaseActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                warehouseOutNextViewModel.carId = carsSpinnerAdapter.data[position].id
+                selectRouteViewModel.carId = carsSpinnerAdapter.data[position].id
             }
 
         }
@@ -66,12 +63,12 @@ class WarehouseOutNextActivity : BaseActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                warehouseOutNextViewModel.routeId = rougeSpinnerAdapter.data[position].id
+                selectRouteViewModel.routeId = rougeSpinnerAdapter.data[position].id
             }
 
         }
-        warehouseOutNextViewModel.getRouteAndCarAndUser()
-        warehouseOutNextViewModel.routeAndCarAndUser.observe(this, Observer {
+        selectRouteViewModel.getRouteAndCarAndUser()
+        selectRouteViewModel.routeAndCarAndUser.observe(this, Observer {
             driverSpinnerAdapter.data.apply {
                 clear()
                 addAll(it.userDOList)
@@ -89,18 +86,20 @@ class WarehouseOutNextActivity : BaseActivity() {
             rougeSpinnerAdapter.notifyDataSetChanged()
         })
 
-        //出库
+        //下一步
         radiusButton5.setOnClickListener {
-            warehouseOutNextViewModel.warehouseOut(pickingId)
+            if (selectRouteViewModel.checkRoute()) {
+                WarehouseOutActivity.goIn(
+                    this,
+                    selectRouteViewModel.carId,
+                    selectRouteViewModel.driverId!!,
+                    selectRouteViewModel.routeId!!
+                )
+            }
         }
 
-        warehouseOutNextViewModel.resultMsg.observe(this, Observer {
+        selectRouteViewModel.resultMsg.observe(this, Observer {
             when {
-                it == "出库成功" -> {
-                    showToast(it)
-                    setResult(Activity.RESULT_OK)
-                    finish()
-                }
                 else -> showToast(it)
             }
         })

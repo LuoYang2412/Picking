@@ -20,7 +20,7 @@
         <activity android:name=".ui.OrderDetailActivity">
         </activity>
         <activity
-                android:name=".ui.WarehouseOutNextActivity"
+                android:name=".ui.SelectRouteActivity"
                 android:label="@string/warehouse_out">
         </activity>
         <activity

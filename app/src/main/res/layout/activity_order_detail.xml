@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView28"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView24"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView25"/>
 
     <TextView
             android:layout_width="0dp"
@@ -120,12 +120,30 @@
             tools:text="冷藏"/>
 
     <TextView
+            android:text="路线:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView31"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView28"/>
+
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView31"
+            tools:text="路线"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
+            android:layout_marginStart="8dp"/>
+
+    <TextView
             android:text="买家留言:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView26"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView28"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView30"/>
 
     <TextView
             android:layout_width="0dp"
@@ -133,7 +151,7 @@
             android:id="@+id/textView27"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView26"
-            tools:text="就放到了我就缴费基数金佛液位计偶尔玩家 解放军见附件二恶就放到了我就缴费基数金佛液位计偶尔玩家 解放军见附件二恶"
+            tools:text="留言"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView26"
             android:layout_marginStart="8dp"/>
 

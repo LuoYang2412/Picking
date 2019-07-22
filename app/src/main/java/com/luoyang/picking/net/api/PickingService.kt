@@ -52,4 +52,13 @@ interface PickingService {
     fun order_detail(
         @Field("orderId") orderId: String
     ): Call<Resource<OrderDetail>>
+
+    //出库路线验证
+    @MOCK("resource.json")
+    @FormUrlEncoded
+    @POST("app_output_order_verification")
+    fun order_output_verification(
+        @Field("orderId") orderId: String,
+        @Field("routeId") routeId: String
+    ): Call<Resource<Objects>>
 }
