@@ -56,9 +56,14 @@ class OrderDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_detail)
 
+        val metrics = resources.displayMetrics
+        val width = metrics.widthPixels / 5
         val goodsNameColumn = Column<String>("商品名称", "goodsName")
+        goodsNameColumn.width = width
         val outputQuantityColumn = Column<Int>("数量", "outputQuantity")
+        outputQuantityColumn.width = width / 3
         val goodsSpecValueColumn = Column<String>("规格", "goodsSpecValue")
+        goodsSpecValueColumn.width = width / 3
         val tableData = TableData<OrderGoodsDOS>(
             "订单详情",
             ArrayList<OrderGoodsDOS>(),
@@ -74,7 +79,7 @@ class OrderDetailActivity : BaseActivity() {
             columnTitleVerticalPadding = 8
             horizontalPadding = 2
             verticalPadding = 1
-            minTableWidth = resources.displayMetrics.widthPixels - DensityUtils.dp2px(this@OrderDetailActivity, 16F)
+            minTableWidth = metrics.widthPixels - DensityUtils.dp2px(this@OrderDetailActivity, 16F)
         }
 
         orderDetailViewModel.orderDetail.observe(this, Observer {
@@ -104,7 +109,7 @@ class OrderDetailActivity : BaseActivity() {
                 else -> "-"
             }
             textView30.text = it.route
-            textView27.text = it.remarks ?: "-"
+            textView27.text = it.remarks
             smartTable1.tableData.t = it.orderGoodsDOS
             smartTable1.notifyDataChanged()
         })
