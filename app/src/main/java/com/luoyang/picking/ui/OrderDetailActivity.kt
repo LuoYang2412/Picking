@@ -96,7 +96,7 @@ class OrderDetailActivity : BaseActivity() {
                 0 -> "待拣货"
                 1 -> "已拣货"
                 3 -> "待出库"
-                4 -> "代配送"
+                4 -> "待配送"
                 5 -> "配送中"
                 6 -> "已完成"
                 else -> "-"
